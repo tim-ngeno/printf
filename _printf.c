@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stddef.h>
 
 /**
  * print_string - print strings with the %s specifier
@@ -12,6 +13,9 @@ int print_string(char *s)
 {
 	int i = 0;
 	int ret_value = 0;
+
+	if (s == NULL)
+		return (-1);
 
 	while (s[i] != '\0')
 	{
