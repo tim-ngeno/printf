@@ -66,5 +66,6 @@ int _printf(const char *format, ...)
 		j += 1;
 	}
 
+	va_end(params);
 	return (j);
 }
