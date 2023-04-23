@@ -1,4 +1,4 @@
-#include "main.h"
+#include"main.h"
 
 /**
  * print_binary - function to convert unsigned int to binary
@@ -11,7 +11,7 @@ void print_binary(bits_c, *bin)
 	int i = 0, int j = 0;
 	char *bit, *cp;
 
-	num = va_arg(*(bin -> args), unsigned int);
+	num = va_arg(*(bin->args), unsigned int);
 
 	bit = _calloc(45, sizeof(char));
 	if (bit)
@@ -23,7 +23,7 @@ void print_binary(bits_c, *bin)
 		}
 		if (i == 0)
 		{
-			bin -> c0 = '0';
+			bin->c0 = '0';
 			write_buffer(bin);
 		}
 		else
@@ -34,13 +34,13 @@ void print_binary(bits_c, *bin)
 				for (j = 0, i--; i >= 0; j++, i--)
 					cp[j] = bit[i];
 				puts_buffer(bin, cp);
-				free (cp);
+				free(cp);
 			}
-			else 
-				bin -> error = 1;
+			else
+				bin->error = 1;
 		}
-		free (bit);
+		free(bit);
 	}
 	else
-		bin -> error = 1;
+		bin->error = 1;
 }
