@@ -8,6 +8,12 @@
 #include <limits.h>
 #include <stdio.h>
 
+/*memory allocation*/
+void *_calloc(unsigned int nmemb, unsigned int size);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void write_buffer(bits_c *bin);
+void puts_buffer(bits_c *bin, char *str);
+
 int _printf(const char *format, ...);
 
 int _putchar(char s);
