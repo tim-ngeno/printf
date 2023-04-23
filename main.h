@@ -18,6 +18,6 @@ int _printf(const char *format, ...);
 
 int _putchar(char s);
 
-void print_binary(unsigned int bits_c, *bin);
+void print_binary(unsigned int bits_c, unsigned int *bin);
 
 #endif /* MAIN_H */
