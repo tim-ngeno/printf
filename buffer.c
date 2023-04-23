@@ -14,23 +14,20 @@ void write_buffer(unsigned int bits_c, unsigned int *bin)
 	if (bin->buffer)
 	{
 		bin->buffer[bin->buf_index++] = bin->c0;
-		while ((bin->buf_index + 1) % BUFSIZE == 0)
+
+		if ((bin->buf_index + 1) % BUFSIZE == 0)
 		{
 			old = bin->buf_index + 1;
 			new = old + BUFSIZE;
 			temp = _realloc(bin->buffer, old, new);
 			if (!temp)
-			{
 				bin->error = 1;
-				break;
-			}
 			else
-			{
 				bin->buffer = temp;
-			}
 		}
 	}
 }
+
 
 /**
  * puts_buffer - puts string into buffer
