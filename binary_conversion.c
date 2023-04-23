@@ -5,7 +5,7 @@
  * @bin: argument
  */
 
-void print_binary(int bits_c, *bin)
+void print_binary(unsigned int bits_c, *bin)
 {
 	unsigned int num;
 	int i = 0, int j = 0;
