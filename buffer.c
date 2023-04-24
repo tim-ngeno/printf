@@ -1,42 +1,35 @@
-#include "main.h"
-
 /**
- * write_buffer - adds input char to buffer 1 at a time
- * @bits_c: the number of bits in the buffer
- * @bin: pointer to the buffer
+ * write_buffer - adds a character to buffer
+ * @stk: arguments
  */
-
-void write_buffer(unsigned int bits_c, unsigned int *bin)
+void write_buffer(stock_t *stk)
 {
 	unsigned int old, new;
 	char *temp;
 
-	if (bin->buffer)
+	if (stk->buffer)
 	{
-		bin->buffer[bin->buf_index++] = bin->c0;
+		stk->buffer[stk->buf_index++] = stk->c0;
 
-		if ((bin->buf_index + 1) % BUFSIZE == 0)
+		if ((stk->buf_index + 1) % BUFSIZE == 0)
 		{
-			old = bin->buf_index + 1;
+			old = stk->buf_index + 1;
 			new = old + BUFSIZE;
-			temp = _realloc(bin->buffer, old, new);
+			temp = _realloc(stk->buffer, old, new);
 			if (!temp)
-				bin->error = 1;
+				stk->error = 1;
 			else
-				bin->buffer = temp;
+				stk->buffer = temp;
 		}
 	}
 }
 
-
 /**
- * puts_buffer - puts string into buffer
- * @bits_c: number of bits inside buffer
- * @bin: a pointer to the buffer
- * @str: string
+ * puts_buffer - prints string to buffer
+ * @stk: arguments
+ * @str: string to print
  */
-
-void puts_buffer(unsigned int bits_c, unsigned int *bin, char *str)
+void puts_buffer(stock_t *stk, char *str)
 {
 	int i, l;
 
@@ -44,7 +37,7 @@ void puts_buffer(unsigned int bits_c, unsigned int *bin, char *str)
 
 	for (i = 0; i < l; i++)
 	{
-		bin->c0 = str[i];
-		write_buffer(bits_c, bin);
+		stk->c0 = str[i];
+		write_buffer(stk);
 	}
 }
