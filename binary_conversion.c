@@ -1,30 +1,25 @@
-#include"main.h"
+#include "main.h"
 
 /**
- * print_binary - function to convert unsigned int to binary
- * @bin: argument
+ * p_binary - function to convert unsigned int to binary
+ * @stk: argument
  */
 
-void print_binary(unsigned int bits_c, *bin)
+void p_binary(stock_t *stk)
 {
-	unsigned int num;
-	int i = 0, int j = 0;
+	unsigned int n = va_arg(*(stk->args), unsigned int);
+	int i, j;
 	char *bit, *cp;
 
-	num = va_arg(*(bin->args), unsigned int);
-
-	bit = _calloc(45, sizeof(char));
+	bit = _calloc(33, sizeof(char));
 	if (bit)
 	{
-		while (num)
-		{
-			bit[i++] = ((num % 2) + '0');
-			num /= 2;
-		}
+		for (i = 0; n; i++, n /= 2)
+			bit[i] = ((n % 2) + '0');
 		if (i == 0)
 		{
-			bin->c0 = '0';
-			write_buffer(bin);
+			stk->c0 = '0';
+			write_buffer(stk);
 		}
 		else
 		{
@@ -33,14 +28,15 @@ void print_binary(unsigned int bits_c, *bin)
 			{
 				for (j = 0, i--; i >= 0; j++, i--)
 					cp[j] = bit[i];
-				puts_buffer(bin, cp);
+
+				puts_buffer(stk, cp);
 				free(cp);
 			}
 			else
-				bin->error = 1;
+				stk->error = 1;
 		}
 		free(bit);
 	}
 	else
-		bin->error = 1;
+		stk->error = 1;
 }
