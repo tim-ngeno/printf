@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * main - Test file
+ * main - test file
  *
  * Return: always 0
  */
