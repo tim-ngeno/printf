@@ -13,6 +13,22 @@
 #define LOWHEX 0
 #define UPHEX 1
 
+/**
+ * struct stock_s - stock of variables
+ * @fmt: input format string
+ * @i: index to traverse the format string
+ * @args: arguments list
+ * @buffer: buffer to hold input
+ * @buf_index: index
+ * @flag: flag
+ * @space: space
+ * @c0: char to be written to buffer
+ * @c1: char checking after % character
+ * @c2: char to check 2 spaces after % symbol
+ * @c3: third char
+ * @error: 0(no error), 1 (error)
+ */
+
 typedef struct stock_s
 {
 	const char *fmt;
@@ -29,6 +45,11 @@ typedef struct stock_s
 	int error;
 } stock_t;
 
+/**
+ * struct matches_s - printf specifiers
+ * @ch: character specifier
+ * @func: pointer
+ */
 typedef struct matches_s
 {
 	char ch;
