@@ -10,16 +10,15 @@
  */
 int print_octal(unsigned int n)
 {
-        if (n > 7)
-        {
-                _putchar(n / 8 + '0');
-                _putchar(n % 8 + '0');
+	if (n > 7)
+	{
+		_putchar(n / 8 + '0');
+		_putchar(n % 8 + '0');
+	}
+	else
+	{
+		_putchar(n + '0');
+	}
 
-        }
-        else
-        {
-                _putchar(n + '0');
-        }
-
-        return (0);
+	return (0);
 }
