@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * write_buffer - adds a character to buffer
  * @stk: arguments
