@@ -1,48 +1,75 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stddef.h>
 
 /**
- * _printf - print arguments passed to function
- * @format: pointer to argument specifier
- * Return: 0 on success
+ * print_string - print strings with the %s specifier
+ *
+ * @s: the input string
+ *
+ * Return: On success 0
  */
-
-int _printf(const char *format, ...)
+int print_string(char *s)
 {
-	va_list args_list;
-	stock_t *stk;
-	void (*temp_func)(stock_t *);
+	int i = 0;
+	int ret_value = 0;
 
-	if (!format)
+	if (s == NULL)
 		return (-1);
 
-	va_start(args_list, format);
-	stk = build_stock(&args_list, format);
-
-	while (stk && format[stk->i] && !stk->error)
+	while (s[i] != '\0')
 	{
-		stk->c0 = format[stk->i];
-		if (stk->c0 != '%')
-			write_buffer(stk);
-		else
-		{
-			parse_specifiers(stk);
-			temp_func = match_specifier(stk);
-			if (temp_func)
-				temp_func(stk);
-			else if (stk->c1)
-			{
-				if (stk->flag)
-					stk->flag = 0;
-				write_buffer(stk);
-			}
-			else
-			{
-				if (stk->space)
-					stk->buffer[--(stk->buf_index)] = '\0';
-				stk->error = 1;
-			}
-		}
-		stk->i++;
+		_putchar(s[i]);
+		i++;
+		ret_value += 1;
 	}
-	return (end_func(stk));
+
+	return (ret_value);
+}
+
+
+/**
+ * _printf - print arguments passed to the function
+ *
+ * @format: pointer to argument specifier
+ *
+ * Return: 0 on success
+ */
+int _printf(const char *format, ...)
+{
+	int i;
+	int j = 0; /*return value of _printf() */
+	int s_val; /* return value of print_string() */
+	va_list params;
+
+	va_start(params, format);
+
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] != '%')
+		{
+			_putchar(format[i]);
+		}
+		else if (format[i + 1] == 'c')
+		{
+			_putchar(va_arg(params, int));
+			i++;
+		}
+		else if (format[i + 1] == '%')
+		{
+			_putchar('%');
+			i++;
+		}
+		else if (format[i + 1] == 's')
+		{
+			s_val = print_string(va_arg(params, char *));
+			i++;
+			j += (s_val - 1);
+		}
+
+		j += 1;
+	}
+
+	va_end(params);
+	return (j);
 }
