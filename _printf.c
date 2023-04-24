@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 	int i;
 	int j = 0; /*return value of _printf() */
 	int s_val; /* return value of print_string() */
-	unsigned int k;
+
 	va_list params;
 
 	va_start(params, format);

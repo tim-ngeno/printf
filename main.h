@@ -17,4 +17,6 @@ int _putchar(char s);
 
 char *convert(unsigned int n, int base);
 
+int print_string(char *s);
+
 #endif /* MAIN_H */

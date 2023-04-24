@@ -8,6 +8,7 @@
  */
 int main(void)
 {
+	int n;
 	char a = 'a';
 	char *s = "Limoblaze musique";
 	int ret_value, ret_value2;
@@ -19,7 +20,7 @@ int main(void)
 	printf("String Test:\t %s\n", s);
 	printf("Percentage Test: This %%  has double %% percentage\n");
 	puts("%d\t%o\t%x");
-	for (int n = 5; n < 16; n++)
+	for (n = 5; n < 16; n++)
 	{
 		printf("%d\t%o\t%x\t\n", n, n, n);
 	}
@@ -35,7 +36,7 @@ int main(void)
 	_printf("Percentage Test: This %%%  has double %% percentage\n");
 	printf("Return value: %d\n", ret_value2);
 	puts("%d\t%o\t%x");
-	for (int n = 5; n < 16; n++)
+	for (n = 5; n < 16; n++)
 	{
 		_printf("%d\t%o\t%x\t\n", n, n, n);
 	}
