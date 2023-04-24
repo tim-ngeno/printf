@@ -1,32 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stddef.h>
-
-/**
- * print_string - print strings with the %s specifier
- *
- * @s: the input string
- *
- * Return: On success 0
- */
-int print_string(char *s)
-{
-	int i = 0;
-	int ret_value = 0;
-
-	if (s == NULL)
-		return (-1);
-
-	while (s[i] != '\0')
-	{
-		_putchar(s[i]);
-		i++;
-		ret_value += 1;
-	}
-
-	return (ret_value);
-}
-
 
 /**
  * _printf - print arguments passed to the function
@@ -40,9 +12,14 @@ int _printf(const char *format, ...)
 	int i;
 	int j = 0; /*return value of _printf() */
 	int s_val; /* return value of print_string() */
+	unsigned int k;
 	va_list params;
 
 	va_start(params, format);
+
+	/* handle NULL format pointer */
+	if (format == NULL)
+		return (-1);
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -66,6 +43,35 @@ int _printf(const char *format, ...)
 			i++;
 			j += (s_val - 1);
 		}
+
+		/**
+		   else if (format[i + 1] == 'd')
+		{
+			k = va_arg(params, int);
+			if (k < 0)
+			{
+				k = -k;
+				_putchar('-');
+			}
+			_putchar(convert(k, 10));
+			i++;
+			j += k - 1;
+		}
+		else if (format[i + 1] == 'o') 
+		{
+			k = va_arg(params, unsigned int);
+			_putchar(convert(k, 8));
+			i++;
+			j += k;
+		}
+		else if (format[i + 1] == 'x')
+		{
+			k = va_arg(params, unsigned int);
+			_putchar(convert(k, 16));
+			i++;
+			j += k;
+		}
+		*/
 
 		j += 1;
 	}

@@ -18,6 +18,8 @@ int _printf(const char *format, ...);
 
 int _putchar(char s);
 
+char *convert(unsigned int n, int base);
+
 void print_binary(bits_c, *bin);
 
 #endif /* MAIN_H */
