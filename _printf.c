@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 
 	if (!format)
 		return (-1);
+
 	va_start(args_list, format);
 	stk = build_stock(&args_list, format);
 
