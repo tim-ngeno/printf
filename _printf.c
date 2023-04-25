@@ -43,28 +43,17 @@ int _printf(const char *format, ...)
 			i++;
 			j += (s_val - 1);
 		}
-
-		/**
-		   else if (format[i + 1] == 'd')
+		else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		{
-			k = va_arg(params, int);
-			if (k < 0)
-			{
-				k = -k;
-				_putchar('-');
-			}
-			_putchar(convert(k, 10));
+			print_d(va_arg(params, int));
 			i++;
-			j += k - 1;
 		}
-		else if (format[i + 1] == 'o') 
+		else if (format[i + 1] == 'o')
 		{
-			k = va_arg(params, unsigned int);
-			_putchar(convert(k, 8));
+			print_octal(va_arg(params, unsigned int));
 			i++;
-			j += k;
 		}
-		else if (format[i + 1] == 'x')
+		/* else if (format[i + 1] == 'x')
 		{
 			k = va_arg(params, unsigned int);
 			_putchar(convert(k, 16));
