@@ -1,49 +1,45 @@
 #include "main.h"
+
 /**
- * _printf - print arguments passed to the function
- * @format: pointer to argument specifier
- * Return: 0 on success
+ * _printf - printf function
+ * @format: const char pointer
+ * Return: b_len
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, j = 0;
-	int s_val;
-	va_list params;
+	int (*pfunc)(va_list, flags_t *);
+	const char *ptr;
+	va_list args;
+	flags_t flags = {0, 0, 0};
 
-	va_start(params, format);
-	if (format == NULL)
+	register int count = 0;
+
+	va_start(args, format);
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-	for (i = 0; format[i] != '\0'; i++)
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (ptr = format; *ptr; ptr++)
 	{
-		if (format[i] != '%')
-			_putchar(format[i]);
-		else if (format[i + 1] == 'c')
+		if (*ptr == '%')
 		{
-			_putchar(va_arg(params, int));
-			i++;
+			ptr++;
+			if (*ptr == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+			while (get_flag(*ptr, &flags))
+				ptr++;
+			pfunc = get_print(*ptr);
+			count += (pfunc)
+				? pfunc(args, &flags)
+				: _printf("%%%c", *ptr);
 		}
-		else if (format[i + 1] == '%')
-		{
-			_putchar('%');
-			i++;
-		}
-		else if (format[i + 1] == 's')
-		{
-			s_val = print_string(va_arg(params, char *));
-			i++;
-			j += (s_val - 1);
-		}
-		else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-		{
-			print_d(va_arg(params, int));
-			i++;
-		}
-		else if (format[i + 1] == 'o')
-		{	print_octal(va_arg(params, unsigned int));
-			i++;
-		}
-		j += 1;
+		else
+			count += _putchar(*ptr);
 	}
-	va_end(params);
-	return (j);
+	_putchar(-1);
+	va_end(args);
+	return (count);
 }
