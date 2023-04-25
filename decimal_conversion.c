@@ -15,7 +15,6 @@ int print_d(int d)
 		d = -d;
 		_putchar('-');
 	}
-	d = atoi(convert(d, 10)); /* convert decimal/integer to base 10 */
 
 	if (d > 9)
 	{
