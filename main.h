@@ -1,4 +1,3 @@
-
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -15,8 +14,8 @@ int _printf(const char *format, ...);
 
 int _putchar(char s);
 
-char *convert(unsigned int n, int base);
-
 int print_string(char *s);
+
+int print_d(int d);
 
 #endif /* MAIN_H */
