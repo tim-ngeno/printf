@@ -18,4 +18,6 @@ int print_string(char *s);
 
 int print_d(int d);
 
+int print_octal(unsigned int n);
+
 #endif /* MAIN_H */
