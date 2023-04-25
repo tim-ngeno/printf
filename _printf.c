@@ -9,24 +9,16 @@
  */
 int _printf(const char *format, ...)
 {
-	int i;
-	int j = 0; /*return value of _printf() */
-	int s_val; /* return value of print_string() */
-
+	int i = 0, j = 0, s_val;
 	va_list params;
 
 	va_start(params, format);
-
-	/* handle NULL format pointer */
 	if (format == NULL)
 		return (-1);
-
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
-		{
 			_putchar(format[i]);
-		}
 		else if (format[i + 1] == 'c')
 		{
 			_putchar(va_arg(params, int));
@@ -49,19 +41,9 @@ int _printf(const char *format, ...)
 			i++;
 		}
 		else if (format[i + 1] == 'o')
-		{
-			print_octal(va_arg(params, unsigned int));
+		{	print_octal(va_arg(params, unsigned int));
 			i++;
 		}
-		/* else if (format[i + 1] == 'x')
-		{
-			k = va_arg(params, unsigned int);
-			_putchar(convert(k, 16));
-			i++;
-			j += k;
-		}
-		*/
-
 		j += 1;
 	}
 
