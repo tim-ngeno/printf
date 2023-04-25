@@ -1,15 +1,13 @@
 #include "main.h"
-
 /**
  * _printf - print arguments passed to the function
- *
  * @format: pointer to argument specifier
- *
  * Return: 0 on success
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, j = 0, s_val;
+	int i = 0, j = 0;
+	int s_val;
 	va_list params;
 
 	va_start(params, format);
@@ -46,7 +44,6 @@ int _printf(const char *format, ...)
 		}
 		j += 1;
 	}
-
 	va_end(params);
 	return (j);
 }
